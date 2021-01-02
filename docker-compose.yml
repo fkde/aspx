@@ -1,0 +1,20 @@
+version: '3'
+services:
+  docker-php-nginx:
+    container_name: application
+    image: docker-php-nginx
+    build:
+      context: ./docker
+    environment:
+      APPLICATION_ENV: development
+    ports:
+      - "443:443"
+    networks:
+      - docker-php-nginx
+    volumes:
+      - ./app:/var/www
+
+networks:
+  docker-php-nginx:
+    name: docker-php-nginx
+    driver: bridge

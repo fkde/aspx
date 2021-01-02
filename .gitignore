@@ -1,0 +1,3 @@
+.idea/
+!docker/rootfs/etc/nginx/ssl/.gitkeep
+docker/rootfs/etc/nginx/ssl/*
