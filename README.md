@@ -13,8 +13,8 @@ Both processes (PHP and Nginx) are supervised which also is the first process (P
 ## Installation
 
 ```
-$> make certificates
-$> make install
+./docker-php-nginx $> make certificates
+./docker-php-nginx $> make install
 ```
 
 ## Development
