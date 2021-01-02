@@ -1,6 +1,7 @@
 ## Introduction
 
-This is a Dummy Application which can run PHP Applications inside a Docker environment. 
+This is a dummy application which can run PHP applications inside a stable docker environment.
+Both processes (PHP and Nginx) are supervised which also is the first process (PID 1).
 
 ## Requirements
 
