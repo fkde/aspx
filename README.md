@@ -26,5 +26,5 @@ The usage would be ```./bin/run.sh "Your command"``` (with quotes).
 
 ### The default url
 
-Call [localhost](https://127.0.0.1) in your favorite Browser.
+Call [localhost](https://localhost) in your favorite Browser.
 You may have to accept the custom certificate warning.

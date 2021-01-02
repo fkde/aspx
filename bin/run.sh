@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-IMAGE_NAME="eassets.net/application"
+IMAGE_NAME="docker-php-nginx"
 APP_DIR=$(readlink -f "$DIR/../app")
 
 if [ -z "$1" ]; then

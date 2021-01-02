@@ -1,0 +1,14 @@
+{
+    "name": "application/docker-php-nginx",
+    "description": "A example setup of composer",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anonymous",
+            "email": "anonymous@example.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

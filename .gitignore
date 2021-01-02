@@ -1,3 +1,4 @@
 .idea/
-!docker/rootfs/etc/nginx/ssl/.gitkeep
 docker/rootfs/etc/nginx/ssl/*
+!docker/rootfs/etc/nginx/ssl/.gitkeep
+/app/vendor/
