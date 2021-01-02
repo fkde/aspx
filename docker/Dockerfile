@@ -1,8 +1,8 @@
 FROM alpine:3.12
 
 # Define meta informations
-MAINTAINER eassets.net
-LABEL maintainer="dev@eassets.net"
+MAINTAINER Flo Knapp
+LABEL maintainer="office@florianknapp.de"
 
 # Install packages
 RUN apk add --no-cache \

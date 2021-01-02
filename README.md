@@ -1,9 +1,31 @@
 ## Introduction
 
 This is a dummy application which can run PHP applications inside a stable docker environment.
-Both processes (PHP and Nginx) are supervised which also is the first process (PID 1).
+Both processes (PHP and Nginx) are supervised which also is the first process (PID 1). The size 
+of the base image currently is ~76 MB.
 
-## Requirements
+## Provided packages
+
+- supervisor
+- curl
+- php7-fpm
+- php7-json
+- php7-ldap
+- php7-curl
+- php7-pdo
+- php7-pdo_mysql
+- php7-pdo_sqlite
+- php7-simplexml
+- php7-dom
+- php7-ctype
+- php7-tokenizer
+- php7-xml
+- php7-xmlwriter
+- php7-session
+- composer
+- nginx
+
+## Required packages
 
 - make
 - docker
