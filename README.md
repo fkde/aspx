@@ -55,9 +55,21 @@ the mentioned ```public``` folder is the server root directory.
 
 ## Run commands in the container
 
-If you want to run custom commands inside the container you 
-can use the Shell Script in the ```./bin```-Folder. 
-The usage would be ```./bin/run.sh "Your command"``` (with quotes).
+If you need to execute your own commands within the container, you can use the provided 
+shell script in the ```bin``` directory. It also respects the user permissions as it's 
+running with the ```www``` user. You don't have to fight with scrambled permissions 
+on your host machine anymore.
+
+Usage: ```./bin/run.sh "composer install"```
+
+## Rebuilding the container/image
+
+In some cases you have to rebuild your image and container, especially if you're adding 
+files within the ```rootfs``` directory. Most of the time you have to delete the whole setup 
+and rebuild it to prevent the docker layer cache from kicking in. Because of the way the 
+image is build in this repository, Docker is able to detect changes in the source of every layer.
+This means you can safely just run ```make install``` again and rely on getting your 
+expected changes into the container. The cache is still active though.
 
 ## Default URL
 
