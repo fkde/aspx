@@ -34,7 +34,7 @@ of the base image currently is ~76 MB.
 
 ## Installation
 
-```
+```bash
 ./docker-php-nginx $> make certificates
 ./docker-php-nginx $> make install
 ```
@@ -52,6 +52,12 @@ The ```src``` folder is where your application logic lives.
 
 You can also safely include assets like JavaScript or Stylesheets in an absolute way, like ```/css/main.css```as 
 the mentioned ```public``` folder is the server root directory.
+
+## Connect to the container
+
+```bash
+./docker-php-nginx $> docker exec -it application /bin/sh
+```
 
 ## Run commands in the container
 
