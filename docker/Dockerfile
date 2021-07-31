@@ -1,34 +1,41 @@
-FROM alpine:3.12
+FROM alpine:3.14
 
 # Define meta informations
 MAINTAINER Flo Knapp
 LABEL maintainer="office@florianknapp.de"
 
+ENV ENV="/home/www/.profile"
+
 # Install packages
-RUN apk add --no-cache \
+RUN apk --no-cache update && \
+    apk add --no-cache \
 	supervisor \
 	curl \
-	php7-fpm \
-	php7-json \
-	php7-ldap \
-	php7-curl \
-	php7-pdo \
-	php7-pdo_mysql \
-	php7-pdo_sqlite \
-	php7-simplexml \
-	php7-dom \
-	php7-ctype \
-	php7-tokenizer \
-	php7-xml \
-	php7-xmlwriter \
-	php7-session \
-	composer \
+	php8 \
+	php8-fpm \
+	php8-json \
+	php8-ldap \
+	php8-curl \
+	php8-phar \
+	php8-pdo \
+	php8-pdo_mysql \
+	php8-pdo_sqlite \
+	php8-simplexml \
+	php8-dom \
+	php8-ctype \
+	php8-tokenizer \
+	php8-xml \
+	php8-xmlwriter \
+	php8-session \
 	nginx
 
 RUN adduser --disabled-password --shell /bin/ash --home /home/www www && \
 	addgroup www www && \
 	mkdir -p /var/run/php && \
-	rm /etc/nginx/conf.d/default.conf
+	echo "alias ll='ls -la --color=auto'" > /home/www/.profile && \
+	wget -O /usr/bin/composer https://getcomposer.org/download/2.1.5/composer.phar && \
+	chmod +x /usr/bin/composer && \
+	ln -s /usr/bin/php8 /usr/bin/php
 
 COPY rootfs /
 

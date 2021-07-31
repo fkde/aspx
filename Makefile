@@ -6,11 +6,18 @@ certificates: generate-certificates fix-cert-permissions
 
 # Build image separately to use a better caching algorithm
 build-app:
-	docker build -t eassets.net/application docker
+	docker build -t docker-php-nginx docker
+
+ssh:
+	docker exec -it -u www application /bin/sh
 
 # Run the application
 run:
-	docker-compose up -d
+	docker-compose up -d --build
+
+# Remove everything
+destroy:
+	docker-compose down --rmi=all
 
 # Install composer dependencies
 composer-install:
