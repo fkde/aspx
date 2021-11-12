@@ -64,7 +64,7 @@ the mentioned ```public``` folder is the server root directory.
 ## Connect to the container
 
 ```bash
-./docker-php-nginx $> docker exec -it application /bin/sh
+./docker-php-nginx $> make ssh
 ```
 
 ## Run commands in the container
