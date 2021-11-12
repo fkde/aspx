@@ -1,8 +1,14 @@
+# This should only be called once for the initial setup
+setup: certificates install
+
 # Install everything
-install: build-app run composer-install message-okay
+install: env build-app run composer-install message-okay
 
 # Generate self-signed certificates for local development
 certificates: generate-certificates fix-cert-permissions
+
+env:
+	set -a; . ./.env; set +a
 
 # Build image separately to use a better caching algorithm
 build-app:

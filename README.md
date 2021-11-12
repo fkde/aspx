@@ -2,26 +2,27 @@
 
 This is a dummy application which can run PHP applications inside a stable docker environment.
 Both processes (PHP and Nginx) are supervised which also is the first process (PID 1). The size 
-of the base image currently is ~76 MB.
+of the base image currently is ~85 MB.
 
 ## Provided packages
 
 - supervisor
 - curl
-- php7-fpm
-- php7-json
-- php7-ldap
-- php7-curl
-- php7-pdo
-- php7-pdo_mysql
-- php7-pdo_sqlite
-- php7-simplexml
-- php7-dom
-- php7-ctype
-- php7-tokenizer
-- php7-xml
-- php7-xmlwriter
-- php7-session
+- php8-fpm
+- php8-json
+- php8-ldap
+- php8-curl
+- php8-pdo
+- php8-pdo_mysql
+- php8-pdo_sqlite
+- php8-simplexml
+- php8-dom
+- php8-ctype
+- php8-mbstring
+- php8-tokenizer
+- php8-xml
+- php8-xmlwriter
+- php8-session
 - composer
 - nginx
 
@@ -34,9 +35,16 @@ of the base image currently is ~76 MB.
 
 ## Installation
 
+First, you have to configure your `PROJECT_NAME` within the .env file.
+Rename (or copy) the containing `.env.dist` file to `.env` and adjust 
+the containing variable.
+
+The following command should only be called once for the initial setup. 
+If you need to rebuild the container e.g. because of filesystem changes you 
+can run `make install` over again.
+
 ```bash
-./docker-php-nginx $> make certificates
-./docker-php-nginx $> make install
+./docker-php-nginx $> make setup
 ```
 
 ## Development
@@ -76,6 +84,10 @@ and rebuild it to prevent the docker layer cache from kicking in. Because of the
 image is build in this repository, Docker is able to detect changes in the source of every layer.
 This means you can safely just run ```make install``` again and rely on getting your 
 expected changes into the container. The cache is still active though.
+
+```bash
+./docker-php-nginx $> make install
+```
 
 ## Default URL
 

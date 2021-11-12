@@ -23,6 +23,7 @@ RUN apk --no-cache update && \
 	php8-simplexml \
 	php8-dom \
 	php8-ctype \
+    php8-mbstring \
 	php8-tokenizer \
 	php8-xml \
 	php8-xmlwriter \
