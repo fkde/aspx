@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.16
 
 # Define meta informations
 MAINTAINER Flo Knapp
@@ -11,24 +11,27 @@ RUN apk --no-cache update && \
     apk add --no-cache \
 	supervisor \
 	curl \
-	php8 \
-	php8-fpm \
-	php8-json \
-	php8-ldap \
-	php8-curl \
-	php8-phar \
-	php8-pdo \
-	php8-pdo_mysql \
-	php8-pdo_sqlite \
-	php8-simplexml \
-	php8-dom \
-	php8-ctype \
-    php8-mbstring \
-	php8-tokenizer \
-	php8-xml \
-	php8-xmlwriter \
-	php8-session \
-	nginx
+	php81 \
+	php81-fpm \
+	php81-json \
+	php81-ldap \
+	php81-curl \
+	php81-phar \
+	php81-pdo \
+    php81-iconv \
+    php81-mbstring \
+	php81-pdo_mysql \
+	php81-simplexml \
+	php81-dom \
+	php81-ctype \
+	php81-tokenizer \
+	php81-xml \
+	php81-xmlwriter \
+	php81-session \
+    php81-pecl-xdebug \
+    nginx
+
+COPY rootfs /
 
 RUN adduser --disabled-password --shell /bin/ash --home /home/www www && \
 	addgroup www www && \
@@ -36,9 +39,8 @@ RUN adduser --disabled-password --shell /bin/ash --home /home/www www && \
 	echo "alias ll='ls -la --color=auto'" > /home/www/.profile && \
 	wget -O /usr/bin/composer https://getcomposer.org/download/2.1.5/composer.phar && \
 	chmod +x /usr/bin/composer && \
-	ln -s /usr/bin/php8 /usr/bin/php
-
-COPY rootfs /
+	ln -s /usr/bin/php81 /usr/bin/php && \
+    chmod +x /opt/xdebug.sh
 
 WORKDIR /var/www
 
