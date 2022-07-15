@@ -56,7 +56,7 @@ message-okay:
 # Use the commands below only if you know what they do #
 ########################################################
 generate-certificates:
-	@openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=DE/ST=BY/L=M/O=eassets.net/CN=eassets.local" -keyout ./docker/rootfs/etc/nginx/ssl/privkey.pem -out ./docker/rootfs/etc/nginx/ssl/fullchain.pem
+	@openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=DE/ST=BY/L=M/O=app/CN=app.local" -keyout ./docker/rootfs/etc/nginx/ssl/privkey.pem -out ./docker/rootfs/etc/nginx/ssl/fullchain.pem
 
 fix-cert-permissions:
 	@chmod 777 ./docker/rootfs/etc/nginx/ssl/*
@@ -65,4 +65,4 @@ create-env-file:
 	@if [ ! -f ".env" ] ; then cp .env.dist .env; fi
 
 fix-run-permissions:
-	chmod +x bin/run.sh
+	@chmod +x bin/run.sh
