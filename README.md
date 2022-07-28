@@ -1,6 +1,6 @@
 ## Introduction
 
-This is a dummy application which can run PHP applications inside a stable docker environment.
+This repository aims to supply a small as possible docker environment, readily preconfigured with PHP and Nginx.
 Both processes (PHP and Nginx) are supervised which also is the first process (PID 1). The size
 of the base image currently is ~89 MB.
 
