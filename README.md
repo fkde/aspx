@@ -80,14 +80,21 @@ Example:
 ./docker-php-nginx $> ./bin/run.sh "composer install"
 ```
 
+You can also run commands as root, which is sometimes useful.
+
+Example:
+```bash
+./docker-php-nginx $> ./bin/run.sh "apt-get install" true
+```
+
 ## Debugging with Xdebug
 
-You can execute the following command to enable Xdebug:
+Execute the following command to enable Xdebug:
 ```bash
 ./docker-php-nginx $> make xdebug-on
 ```
 
-If you need to disable it you can use:
+Disable it with the following command:
 ```bash
 ./docker-php-nginx $> make xdebug-off
 ```
@@ -100,11 +107,11 @@ The Xdebug service is listening on Port 9003, please respect that in your config
 ## Rebuilding the container/image
 
 In some cases you have to rebuild your image and container, especially if you're adding
-files within the ```rootfs``` directory. Most of the time you have to delete the whole setup
+files within the ```rootfs``` directory. In a regular setup you have to delete the whole stack
 and rebuild it to prevent the docker layer cache from kicking in. Because of the way the
 image is build in this repository, Docker is able to detect changes in the source of every layer.
 This means you can safely just run ```make install``` again and rely on getting your
-expected changes into the container. The cache is still active though.
+expected changes into the container. The cache is still active for unchanged layers though.
 
 ## Default URL
 

@@ -1,21 +1,22 @@
-include .env
+ifneq ($(MAKECMDGOALS),clean)
+-include .env
+endif
+
 
 # This should only be called once for the initial setup
-first-install: certificates create-env-file fix-run-permissions install
+first-install: check-env-file certificates fix-run-permissions install
 
 # Install everything
-install: env build-app run composer-install message-okay
+install: check-env-file build-app run composer-install message-okay
 
 # Generate self-signed certificates for local development
 certificates: generate-certificates fix-cert-permissions
-
-env:
-	@set -a; . ./.env; set +a
 
 # Build image separately to use a better caching algorithm
 build-app:
 	@docker build -t ${PROJECT_NAME} docker
 
+# Opens a ssh session into the container
 ssh:
 	@docker exec -it -u www ${PROJECT_NAME} /bin/sh
 
@@ -61,8 +62,14 @@ generate-certificates:
 fix-cert-permissions:
 	@chmod 777 ./docker/rootfs/etc/nginx/ssl/*
 
+check-env-file:
+	@if [ ! -f ".env" ] ; then echo "Error: You first have to copy the .env.dist and adjust the project name to your needs."; exit 2; fi
+
 create-env-file:
 	@if [ ! -f ".env" ] ; then cp .env.dist .env; fi
+
+env:
+	@set -a; . ./.env; set +a
 
 fix-run-permissions:
 	@chmod +x bin/run.sh
