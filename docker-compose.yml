@@ -6,13 +6,14 @@ services:
     build:
       context: ./docker
     ports:
-      - "8443:443"
+      - "443:443"
+      - "9003"
     networks:
-      docker-network: {}
+      - app
     volumes:
       - ./app:/var/www
 
 networks:
-  docker-network:
+  app:
     name: ${PROJECT_NAME}
     driver: bridge
