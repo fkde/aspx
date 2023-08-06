@@ -2,7 +2,7 @@
 
 function enableXdebug() {
 
-  if [ -f "/etc/php81/conf.d/101_xdebug.ini" ]; then
+  if [ -f "/etc/php82/conf.d/101_xdebug.ini" ]; then
     echo "is already enabled."
     exit 0
   fi
@@ -18,12 +18,12 @@ xdebug.client_port=9003
 xdebug.file_link_format=phpstorm://open?%f:%l
 END
 )
-  echo "$CONFIG" > /etc/php81/conf.d/101_xdebug.ini
+  echo "$CONFIG" > /etc/php82/conf.d/101_xdebug.ini
   supervisorctl -c /etc/supervisord.conf restart php-fpm &> /dev/null
 }
 
 function disableXdebug() {
-  rm /etc/php81/conf.d/101_xdebug.ini
+  rm /etc/php82/conf.d/101_xdebug.ini
   supervisorctl -c /etc/supervisord.conf restart php-fpm &> /dev/null
 }
 
