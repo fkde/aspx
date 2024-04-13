@@ -16,24 +16,27 @@ certificates: generate-certificates fix-cert-permissions
 build-app:
 	@docker build -t ${PROJECT_NAME} docker
 
-# Opens a ssh session into the container
+# Open new ssh session into the container
 ssh:
 	@docker exec -it -u www ${PROJECT_NAME} /bin/sh
 
-# Run the application
+# Run the container
 run:
-	@docker-compose up -d --build
+	@docker compose up -d --build
 
-# Remove everything
+# Remove the container and image
 destroy:
-	@docker-compose down --rmi=all
+	@docker compose down --rmi=all
 
+# Create the default network based on the application name
 network-create:
 	@docker network create ${PROJECT_NAME}
 
+# Enable xDebug
 xdebug-on:
 	@./bin/run.sh "/opt/xdebug.sh on" true
 
+# Disable xDebug
 xdebug-off:
 	@./bin/run.sh "/opt/xdebug.sh off" true
 
@@ -49,7 +52,7 @@ composer-install-prod:
 composer-update:
 	@./bin/run.sh "composer update"
 
-# Print okay message
+# Print "okay" message
 message-okay:
 	@echo "Setup was successful. You may now want to call https://localhost in your browser."
 
@@ -57,10 +60,13 @@ message-okay:
 # Use the commands below only if you know what they do #
 ########################################################
 generate-certificates:
-	@openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=DE/ST=BY/L=M/O=app/CN=app.local" -keyout ./docker/rootfs/etc/nginx/ssl/privkey.pem -out ./docker/rootfs/etc/nginx/ssl/fullchain.pem
+	@openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=DE/ST=BY/L=M/O=${PROJECT_NAME}/CN=${PROJECT_NAME}.local" -keyout ./docker/rootfs/etc/nginx/ssl/privkey.pem -out ./docker/rootfs/etc/nginx/ssl/fullchain.pem
 
 fix-cert-permissions:
-	@chmod 777 ./docker/rootfs/etc/nginx/ssl/*
+	@chmod +r ./docker/rootfs/etc/nginx/ssl/*
+
+fix-run-permissions:
+	@chmod +x bin/run.sh
 
 check-env-file:
 	@if [ ! -f ".env" ] ; then echo "Error: You first have to copy the .env.dist and adjust the project name to your needs."; exit 2; fi
@@ -70,6 +76,3 @@ create-env-file:
 
 env:
 	@set -a; . ./.env; set +a
-
-fix-run-permissions:
-	@chmod +x bin/run.sh

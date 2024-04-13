@@ -1,4 +1,4 @@
-FROM alpine:3.18.2
+FROM alpine:3.19.1
 
 # Define meta informations
 MAINTAINER Flo Knapp
@@ -39,7 +39,7 @@ RUN adduser --disabled-password --shell /bin/ash --home /home/www www && \
 	echo "alias ll='ls -la --color=auto'" > /home/www/.profile && \
 	wget -O /usr/bin/composer https://getcomposer.org/download/2.5.8/composer.phar && \
 	chmod +x /usr/bin/composer && \
-	ln -s /usr/bin/php82 /usr/bin/php && \
+	if [ ! -e "/usr/bin/php" ]; then ln -s /usr/bin/php82 /usr/bin/php; fi && \
     chmod +x /opt/xdebug.sh
 
 WORKDIR /var/www

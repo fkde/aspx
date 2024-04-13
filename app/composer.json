@@ -1,5 +1,5 @@
 {
-    "name": "application/docker-php-nginx",
+    "name": "your/project-name",
     "description": "A example setup of composer",
     "type": "project",
     "license": "MIT",

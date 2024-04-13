@@ -2,9 +2,9 @@
 
 This repository aims to supply a small as possible docker environment, readily preconfigured with PHP and Nginx.
 Both processes (PHP and Nginx) are supervised which also is the first process (PID 1). The size
-of the base image currently is ~89 MB.
+of the image currently is 92.8 MB.
 
-## Provided packages
+## <a name="providedPackages">Provided packages</a>
 
 - supervisor
 - curl
@@ -30,28 +30,36 @@ of the base image currently is ~89 MB.
 
 - make
 - docker
-- docker-compose
 - openssl
 
 ## Installation
 
-First, copy the File `.env.dist` into the same directory but name it `.env`. 
+First, copy the file `.env.dist` into the same directory but name it `.env`. 
 Open the newly created dotenv file and adjust the containing environment variables 
 to your needs.
 
 Example:
 ```bash
-PROJECT_NAME=my-fancy-project-name
+PROJECT_NAME=this-is-my-new-project-name
 ```
-Afterwards, execute the following command in your shell.
+
+This variable will be used for the container, the image, the docker network and to identify 
+which container should be used when using the make commands.
+
+> **_NOTICE_**<br /> All 'make' commands require to be executed from the root directory, not from the ./app nor ./bin directory.
+
+After setting your project name, execute the following command in your shell.
 ```bash
-./docker-php-nginx $> make first-install
+./your-project-name $> make first-install
 ```
+
+This will initially pull the Alpine image and proceeds to install the mentioned 
+packages [as listed above](#a-nameprovidedpackagesprovided-packagesa).
 
 ## Development
 
 Place your code inside the ```app``` folder. Everything in there is
-getting mounted into the container. The Webserver is pointing to a
+being mounted into the container. The Webserver is pointing to a
 file named ```index.php``` in the ```public``` folder. The absolute
 path within the container is ```/var/www/public```.
 
@@ -59,50 +67,47 @@ You can use the existing ```bootstrap.php``` to start with your application.
 Usually you'll create a ```src``` folder beside the ```public``` and ```vendor``` folder.
 The ```src``` folder is where your application logic lives.
 
-You can also safely include assets like JavaScript or Stylesheets in an absolute way, like ```/css/main.css```as
-the mentioned ```public``` folder is the server root directory.
+You can also include assets like JavaScript or CSS in an absolute way, 
+like ```/css/main.css```. As initially mentioned, the ```public``` folder is the servers root directory.
 
 ## Connect to the container
 
 ```bash
-./docker-php-nginx $> make ssh
+./your-project-name $> make ssh
 ```
 
 ## Run commands within the container
 
 If you need to execute your own commands within the container, you can use the provided
 shell script in the ```bin``` directory. It also respects the user permissions as it's
-running with the ```www``` user. You don't have to fight with scrambled permissions
-on your host machine anymore.
+running with the containers ```www``` user. Because of this, your host machine will have the correct 
+user and permissions set when files were created within the container.
 
-Example: 
+Example:
 ```bash
-./docker-php-nginx $> ./bin/run.sh "composer install"
+./your-project-name $> ./bin/run.sh "composer install"
 ```
 
 You can also run commands as root, which is sometimes useful.
 
 Example:
 ```bash
-./docker-php-nginx $> ./bin/run.sh "apt-get install" true
+./your-project-name $> ./bin/run.sh "apt-get install" true
 ```
 
 ## Debugging with Xdebug
 
 Execute the following command to enable Xdebug:
 ```bash
-./docker-php-nginx $> make xdebug-on
+./your-project-name $> make xdebug-on
 ```
 
 Disable it with the following command:
 ```bash
-./docker-php-nginx $> make xdebug-off
+./your-project-name $> make xdebug-off
 ```
 
-***
-**Note** | 
-The Xdebug service is listening on Port 9003, please respect that in your configuration.
-***
+> **_NOTICE_**<br /> The Xdebug service is listening on Port 9003, please respect that in your configuration.
 
 ## Rebuilding the container/image
 

@@ -1,5 +1,5 @@
 .idea/
-docker/rootfs/etc/nginx/ssl/*
-!docker/rootfs/etc/nginx/ssl/.gitkeep
 .env
 docker-compose.override.yml
+docker/rootfs/etc/nginx/ssl/*
+!docker/rootfs/etc/nginx/ssl/.gitkeep
