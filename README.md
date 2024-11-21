@@ -6,23 +6,25 @@ of the image currently is 92.8 MB.
 
 ## <a name="providedPackages">Provided packages</a>
 
+Alpine 3.20.1
+
 - supervisor
 - curl
-- php82-fpm
-- php82-json
-- php82-ldap
-- php82-curl
-- php82-pdo
-- php82-pdo_mysql
-- php82-pdo_sqlite
-- php82-simplexml
-- php82-dom
-- php82-ctype
-- php82-tokenizer
-- php82-xml
-- php82-xmlwriter
-- php82-session
-- php82-pecl-xdebug
+- php83-fpm
+- php83-json
+- php83-ldap
+- php83-curl
+- php83-pdo
+- php83-pdo_mysql
+- php83-pdo_sqlite
+- php83-simplexml
+- php83-dom
+- php83-ctype
+- php83-tokenizer
+- php83-xml
+- php83-xmlwriter
+- php83-session
+- php83-pecl-xdebug
 - composer
 - nginx
 
