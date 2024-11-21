@@ -10,7 +10,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 # Remove everything below this point for your code
 
 $output = $version = '';
-exec('php-fpm83 -v', $output);
+exec('php-fpm84 -v', $output);
 
 echo <<<HTML
 <!DOCTYPE html><html lang="en"><head>

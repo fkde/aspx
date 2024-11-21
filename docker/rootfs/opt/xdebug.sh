@@ -18,12 +18,12 @@ xdebug.client_port=9003
 xdebug.file_link_format=phpstorm://open?%f:%l
 END
 )
-  echo "$CONFIG" > /etc/php83/conf.d/101_xdebug.ini
+  echo "$CONFIG" > /etc/php84/conf.d/101_xdebug.ini
   supervisorctl -c /etc/supervisord.conf restart php-fpm &> /dev/null
 }
 
 function disableXdebug() {
-  rm /etc/php83/conf.d/101_xdebug.ini
+  rm /etc/php84/conf.d/101_xdebug.ini
   supervisorctl -c /etc/supervisord.conf restart php-fpm &> /dev/null
 }
 

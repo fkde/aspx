@@ -1,4 +1,4 @@
-FROM alpine:3.20.1
+FROM alpine:edge
 
 # Define meta informations
 MAINTAINER Flo Knapp
@@ -11,24 +11,24 @@ RUN apk --no-cache update && \
     apk add --no-cache \
 	supervisor \
 	curl \
-	php83 \
-	php83-fpm \
-	php83-json \
-	php83-ldap \
-	php83-curl \
-	php83-phar \
-	php83-pdo \
-    php83-iconv \
-    php83-mbstring \
-	php83-pdo_mysql \
-	php83-simplexml \
-	php83-dom \
-	php83-ctype \
-	php83-tokenizer \
-	php83-xml \
-	php83-xmlwriter \
-	php83-session \
-    php83-pecl-xdebug \
+	php84 \
+	php84-fpm \
+	php84-json \
+	php84-ldap \
+	php84-curl \
+	php84-phar \
+	php84-pdo \
+    php84-iconv \
+    php84-mbstring \
+	php84-pdo_mysql \
+	php84-simplexml \
+	php84-dom \
+	php84-ctype \
+	php84-tokenizer \
+	php84-xml \
+	php84-xmlwriter \
+	php84-session \
+    php84-pecl-xdebug \
     nginx
 
 COPY rootfs /
