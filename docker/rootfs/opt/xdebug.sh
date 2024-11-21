@@ -2,7 +2,7 @@
 
 function enableXdebug() {
 
-  if [ -f "/etc/php82/conf.d/101_xdebug.ini" ]; then
+  if [ -f "/etc/php83/conf.d/101_xdebug.ini" ]; then
     echo "is already enabled."
     exit 0
   fi
